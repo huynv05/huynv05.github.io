@@ -75,7 +75,7 @@ var AppComponent = /** @class */ (function () {
         this.audio.src = "../assets/music/nhacchuong.mp3";
         this.audio.load();
         this.socket = __WEBPACK_IMPORTED_MODULE_2_socket_io_client__(chatservice.getUrl());
-        this.peer = new Peer({ key: 'n90yu2ztuf03sor' });
+        this.peer = new Peer({ key: 'peerjs', host: "skipye.herokuapp.com", secure: true, port: 443 });
     }
     AppComponent.prototype.ngOnInit = function () {
         var _this = this;
