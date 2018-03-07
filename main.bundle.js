@@ -38,7 +38,7 @@ module.exports = module.exports.toString();
 /***/ "../../../../../src/app/app.component.html":
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"container\" [hidden]=\"isLogined\" style=\"margin-top:100px; padding-bottom:50px\">\n<form class=\"form-horizontal\">\n    <div class=\"row\">\n        <div class=\"col-md-3\"></div>\n        <div class=\"col-md-6\">\n            <h2>Please Login</h2>\n            <hr>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-3\"></div>\n        <div class=\"col-md-6\">\n            <div class=\"form-group has-danger\">\n                <label class=\"sr-only\" for=\"email\">Tên đăng nhập</label>\n                <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n                    <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-at\"></i></div>\n                    <input [(ngModel)]=\"username\" type=\"text\" name=\"email\" class=\"form-control\" id=\"email\"\n                           placeholder=\"you@example.com\" required autofocus>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"form-control-feedback\">\n                <span class=\"text-danger align-middle\">\n                    <i class=\"fa fa-close\"></i> Example error message\n                </span>\n            </div>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-3\"></div>\n        <div class=\"col-md-6\">\n            <div class=\"form-group\">\n                <label class=\"sr-only\" for=\"password\">Mật Khẩu</label>\n                <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n                    <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-key\"></i></div>\n                    <input [(ngModel)]=\"password\" type=\"password\" name=\"password\" class=\"form-control\" id=\"password\"\n                           placeholder=\"Password\" required>\n                </div>\n            </div>\n        </div>\n        <br>\n        <div class=\"col-md-3\">\n            <div class=\"form-control-feedback\">\n                <span class=\"text-danger align-middle\">\n                \n                </span>\n                \n                \n            </div>\n        </div>\n       \n    </div>\n\n    <div class=\"row\">\n        <div class=\"col-md-12 text-center\">\n\n      <button class=\"btn btn-primary pull-right\" (click)=\"login()\" >Đăng nhập</button>\n      </div>\n      </div>\n   \n</form>\n</div>\n<div [hidden]=\"!isLogined\">\n<!-- <input type=\"text\" [(ngModel)]=\"anotherid\">\n<h1>My id - {{mypeerid}}</h1>\n<button (click)=\"connect()\">Connect</button>\n<button (click)=\"videoconnect()\">VideoChat</button> -->\n<video [hidden]=\"startCall\" width=\"100px\" #myvideo></video>\n<a href=\"javascript:void(0)\"><img (click)=\"disconnect()\" style=\" position:absolute;\nwidth:50px;\nheight:50px;\nmargin-left:-350px;\nbottom:20px;\nleft:50%;\" src=\"../assets/image/endCall.png\" alt=\"\" *ngIf=\"startTimeCall\" > </a>\n<video style=\"position: fixed; right: 0; bottom: 0;\nmin-width: 100%; min-height: 100%;\nwidth: auto; height: auto; z-index: -100;\n\nbackground-size: cover;\" [hidden]=\"startCall\" width=\"800px\" #revideo></video>\n<div class=\"container clearfix\" *ngIf=\"!startTimeCall\">\n  <div class=\"people-list\" id=\"people-list\" style=\"float:left\">\n    <div class=\"search\">\n      <input type=\"text\" placeholder=\"search\" />\n      <i class=\"fa fa-search\"></i>\n    </div>\n    <p *ngIf=\"userL?.length === 0\">Chưa có người online</p>\n    <ul  *ngIf=\"userL?.length > 0\" class=\"list\">\n      <li class=\"clearfix\"  *ngFor=\"let user of userL\" (click)=\"currUser=user;\"> \n        <img [src]=\"(user)?user.avatar:''\" alt=\"avatar\" />\n        <div class=\"about\">\n          <div class=\"name\">{{(user)?user.username:\"\"}}</div>\n          <div class=\"status\">\n            <i class=\"fa fa-circle online\" style=\"color:green\"></i> online\n          </div>\n        </div>\n      </li>         \n\n    </ul>\n  </div>\n  \n  <div class=\"chat\" style=\"float:left;\n    width: 430px;\">\n    <div class=\"chat-header clearfix\" *ngIf=\"userL?.length > 0\">\n      <img [src]=\"(currUser)?currUser.avatar:''\" alt=\"avatar\" />\n      \n      <div class=\"chat-about\">\n        <div class=\"chat-with\">{{(currUser)?currUser.username:''}}</div>\n        <div class=\"chat-num-messages\">already 1 902 messages</div>\n      </div>\n      <i class=\"fa fa-star\"></i>\n     \n     <a  href=\"javascript:void(0)\"><img  style=\"margin-left:60px\" (click)=\"connect()\" src=\"../assets/image/image.png\" width=\"50px\" alt=\"\"></a>\n     <a *ngIf=\"Oncalled\"  href=\"javascript:void(0)\"><img (click)=\"startRecord()\"  src=\"../assets/image/calling.gif\" alt=\"\"></a>\n    </div> <!-- end chat-header -->\n    <p *ngIf=\"userL?.length === 0\">Chưa có thông tin</p>\n    <div class=\"chat-history\" *ngIf=\"userL?.length > 0\">\n    \n      <ul>\n        <li class=\"clearfix\">\n          <div class=\"message-data align-right\">\n            <span class=\"message-data-time\" >10:10 AM, Today</span> &nbsp; &nbsp;\n            <span class=\"message-data-name\" ></span> <i class=\"fa fa-circle me\"></i>\n            \n          </div>\n          <div class=\"message other-message float-right\">\n            Hi Vincent, how are you? How is the project coming along?\n          </div>\n        </li>\n        \n        <li>\n          <div class=\"message-data\">\n            <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n            <span class=\"message-data-time\">10:12 AM, Today</span>\n          </div>\n          <div class=\"message my-message\">\n            Are we meeting today? Project has been already finished and I have results to show you.\n          </div>\n        </li>\n        \n        <li class=\"clearfix\">\n          <div class=\"message-data align-right\">\n            <span class=\"message-data-time\" >10:14 AM, Today</span> &nbsp; &nbsp;\n            <span class=\"message-data-name\" >Olia</span> <i class=\"fa fa-circle me\"></i>\n            \n          </div>\n          <div class=\"message other-message float-right\">\n            Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?\n          </div>\n        </li>\n        \n        <li>\n          <div class=\"message-data\">\n            <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n            <span class=\"message-data-time\">10:20 AM, Today</span>\n          </div>\n          <div class=\"message my-message\">\n            Actually everything was fine. I'm very excited to show this to our team.\n          </div>\n        </li>\n        \n        <li>\n          <div class=\"message-data\">\n            <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n            <span class=\"message-data-time\">10:31 AM, Today</span>\n          </div>\n          <i class=\"fa fa-circle online\"></i>\n          <i class=\"fa fa-circle online\" style=\"color: #AED2A6\"></i>\n          <i class=\"fa fa-circle online\" style=\"color:#DAE9DA\"></i>\n        </li>\n        \n      </ul>\n      \n    </div> <!-- end chat-history -->\n    \n    <div class=\"chat-message clearfix\">\n      <textarea name=\"message-to-send\" id=\"message-to-send\" placeholder =\"Type your message\" rows=\"3\"></textarea>\n              \n      <i class=\"fa fa-file-o\"></i> &nbsp;&nbsp;&nbsp;\n      <i class=\"fa fa-file-image-o\"></i>\n      \n      <button>Send</button>\n\n    </div> <!-- end chat-message -->\n    \n  </div> <!-- end chat -->\n\n</div> <!-- end container -->\n\n<script id=\"message-template\" type=\"text/x-handlebars-template\">\n<li class=\"clearfix\">\n  <div class=\"message-data align-right\">\n    <span class=\"message-data-time\" >{{time}}, Today</span> &nbsp; &nbsp;\n    <span class=\"message-data-name\" >Olia</span> <i class=\"fa fa-circle me\"></i>\n  </div>\n  <div class=\"message other-message float-right\">\n    {{messageOutput}}\n  </div>\n</li>\n</script>\n\n<script id=\"message-response-template\" type=\"text/x-handlebars-template\">\n<li>\n  <div class=\"message-data\">\n    <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n    <span class=\"message-data-time\">{{time}}, Today</span>\n  </div>\n  <div class=\"message my-message\">\n    {{response}}\n  </div>\n</li>\n</script>\n</div>\n"
+module.exports = "\n<div class=\"container\" [hidden]=\"isLogined\" style=\"margin-top:100px; padding-bottom:50px\">\n<form class=\"form-horizontal\">\n    <div class=\"row\">\n        <div class=\"col-md-3\"></div>\n        <div class=\"col-md-6\">\n            <h2>Please Login</h2>\n            <hr>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-3\"></div>\n        <div class=\"col-md-6\">\n            <div class=\"form-group has-danger\">\n                <label class=\"sr-only\" for=\"email\">Tên đăng nhập</label>\n                <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n                    <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-at\"></i></div>\n                    <input [(ngModel)]=\"username\" type=\"text\" name=\"email\" class=\"form-control\" id=\"email\"\n                           placeholder=\"you@example.com\" required autofocus>\n                </div>\n            </div>\n        </div>\n        <div class=\"col-md-3\">\n            <div class=\"form-control-feedback\">\n                <!-- <span class=\"text-danger align-middle\">\n                    <i class=\"fa fa-close\"></i> Example error message\n                </span> -->\n            </div>\n        </div>\n    </div>\n    <div class=\"row\">\n        <div class=\"col-md-3\"></div>\n        <div class=\"col-md-6\">\n            <div class=\"form-group\">\n                <label class=\"sr-only\" for=\"password\">Mật Khẩu</label>\n                <div class=\"input-group mb-2 mr-sm-2 mb-sm-0\">\n                    <div class=\"input-group-addon\" style=\"width: 2.6rem\"><i class=\"fa fa-key\"></i></div>\n                    <input [(ngModel)]=\"password\" type=\"password\" name=\"password\" class=\"form-control\" id=\"password\"\n                           placeholder=\"Password\" required>\n                </div>\n            </div>\n        </div>\n        <br>\n        <div class=\"col-md-3\">\n            <div class=\"form-control-feedback\">\n                <span class=\"text-danger align-middle\">\n                \n                </span>\n                \n                \n            </div>\n        </div>\n       \n    </div>\n\n    <div class=\"row\">\n        <div class=\"col-md-12 text-center\">\n\n      <button class=\"btn btn-primary pull-right\" (click)=\"login()\" >Đăng nhập</button>\n      </div>\n      </div>\n   \n</form>\n</div>\n<div [hidden]=\"!isLogined\">\n<!-- <input type=\"text\" [(ngModel)]=\"anotherid\">\n<h1>My id - {{mypeerid}}</h1>\n<button (click)=\"connect()\">Connect</button>\n<button (click)=\"videoconnect()\">VideoChat</button> -->\n<video [hidden]=\"startCall\" width=\"100px\" #myvideo></video>\n<a href=\"javascript:void(0)\"><img (click)=\"disconnect()\" style=\" position:absolute;\nwidth:50px;\nheight:50px;\nmargin-left:-350px;\nbottom:20px;\nleft:50%;\" src=\"../assets/image/endCall.png\" alt=\"\" *ngIf=\"startTimeCall\" > </a>\n<video style=\"position: fixed; right: 0; bottom: 0;\nmin-width: 100%; min-height: 100%;\nwidth: auto; height: auto; z-index: -100;\n\nbackground-size: cover;\" [hidden]=\"startCall\" width=\"800px\" #revideo></video>\n<div class=\"container clearfix\" *ngIf=\"!startTimeCall\">\n  <div class=\"people-list\" id=\"people-list\" style=\"float:left\">\n    <div class=\"search\">\n      <input type=\"text\" placeholder=\"search\" />\n      <i class=\"fa fa-search\"></i>\n    </div>\n    <p *ngIf=\"userL?.length === 0\">Chưa có người online</p>\n    <ul  *ngIf=\"userL?.length > 0\" class=\"list\">\n      <li class=\"clearfix\"  *ngFor=\"let user of userL\" (click)=\"currUser=user;\"> \n        <a href=\"javascript:void(0)\">\n        <img [src]=\"(user)?user.avatar:''\" alt=\"avatar\" />\n        <div class=\"about\">\n          <div class=\"name\">{{(user)?user.username:\"\"}}</div>\n          <div class=\"status\">\n           <img src=\"../assets/image/online.svg\" width=\"13px\" alt=\"\"> \n          </div>\n        </div>\n      </a>\n      </li>         \n\n    </ul>\n  </div>\n  \n  <div class=\"chat\" style=\"float:left;\n    width: 430px;\">\n    <div class=\"chat-header clearfix\" *ngIf=\"userL?.length > 0\">\n      <img [src]=\"(currUser)?currUser.avatar:''\" alt=\"avatar\" />\n      \n      <div class=\"chat-about\">\n        <div class=\"chat-with\">{{(currUser)?currUser.username:''}}</div>\n        <div class=\"chat-num-messages\">already 1 902 messages</div>\n      </div>\n      <i class=\"fa fa-star\"></i>\n     \n     <a  href=\"javascript:void(0)\"><img  style=\"margin-left:60px\" (click)=\"connect()\" src=\"../assets/image/image.png\" width=\"50px\" alt=\"\"></a>\n     <a *ngIf=\"Oncalled\"  href=\"javascript:void(0)\"><img (click)=\"startRecord()\"  src=\"../assets/image/calling.gif\" alt=\"\"></a>\n    </div> <!-- end chat-header -->\n    <p *ngIf=\"userL?.length === 0\">Chưa có thông tin</p>\n    <div class=\"chat-history\" *ngIf=\"userL?.length > 0\">\n    \n      <ul>\n        <li class=\"clearfix\">\n          <div class=\"message-data align-right\">\n            <span class=\"message-data-time\" >10:10 AM, Today</span> &nbsp; &nbsp;\n            <span class=\"message-data-name\" ></span> <i class=\"fa fa-circle me\"></i>\n            \n          </div>\n          <div class=\"message other-message float-right\">\n            Hi Vincent, how are you? How is the project coming along?\n          </div>\n        </li>\n        \n        <li>\n          <div class=\"message-data\">\n            <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n            <span class=\"message-data-time\">10:12 AM, Today</span>\n          </div>\n          <div class=\"message my-message\">\n            Are we meeting today? Project has been already finished and I have results to show you.\n          </div>\n        </li>\n        \n        <li class=\"clearfix\">\n          <div class=\"message-data align-right\">\n            <span class=\"message-data-time\" >10:14 AM, Today</span> &nbsp; &nbsp;\n            <span class=\"message-data-name\" >Olia</span> <i class=\"fa fa-circle me\"></i>\n            \n          </div>\n          <div class=\"message other-message float-right\">\n            Well I am not sure. The rest of the team is not here yet. Maybe in an hour or so? Have you faced any problems at the last phase of the project?\n          </div>\n        </li>\n        \n        <li>\n          <div class=\"message-data\">\n            <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n            <span class=\"message-data-time\">10:20 AM, Today</span>\n          </div>\n          <div class=\"message my-message\">\n            Actually everything was fine. I'm very excited to show this to our team.\n          </div>\n        </li>\n        \n        <li>\n          <div class=\"message-data\">\n            <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n            <span class=\"message-data-time\">10:31 AM, Today</span>\n          </div>\n          <i class=\"fa fa-circle online\"></i>\n          <i class=\"fa fa-circle online\" style=\"color: #AED2A6\"></i>\n          <i class=\"fa fa-circle online\" style=\"color:#DAE9DA\"></i>\n        </li>\n        \n      </ul>\n      \n    </div> <!-- end chat-history -->\n    \n    <div class=\"chat-message clearfix\">\n      <textarea name=\"message-to-send\" id=\"message-to-send\" placeholder =\"Type your message\" rows=\"3\"></textarea>\n              \n      <i class=\"fa fa-file-o\"></i> &nbsp;&nbsp;&nbsp;\n      <i class=\"fa fa-file-image-o\"></i>\n      \n      <button>Send</button>\n\n    </div> <!-- end chat-message -->\n    \n  </div> <!-- end chat -->\n\n</div> <!-- end container -->\n\n<script id=\"message-template\" type=\"text/x-handlebars-template\">\n<li class=\"clearfix\">\n  <div class=\"message-data align-right\">\n    <span class=\"message-data-time\" >{{time}}, Today</span> &nbsp; &nbsp;\n    <span class=\"message-data-name\" >Olia</span> <i class=\"fa fa-circle me\"></i>\n  </div>\n  <div class=\"message other-message float-right\">\n    {{messageOutput}}\n  </div>\n</li>\n</script>\n\n<script id=\"message-response-template\" type=\"text/x-handlebars-template\">\n<li>\n  <div class=\"message-data\">\n    <span class=\"message-data-name\"><i class=\"fa fa-circle online\"></i> Vincent</span>\n    <span class=\"message-data-time\">{{time}}, Today</span>\n  </div>\n  <div class=\"message my-message\">\n    {{response}}\n  </div>\n</li>\n</script>\n</div>\n"
 
 /***/ }),
 
@@ -71,6 +71,7 @@ var AppComponent = /** @class */ (function () {
         this.Oncalled = false;
         this.stRecord = false;
         this.audio = new Audio();
+        this.streams = [];
         this.startTimeCall = false;
         this.audio.src = "../assets/music/nhacchuong.mp3";
         this.audio.load();
@@ -95,19 +96,28 @@ var AppComponent = /** @class */ (function () {
         this.peer.on('call', function (call) {
             console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             _this.audio.play();
+            // this.peer.on('data', function(data) {
+            // 	console.log('Received', data);
+            // });
             _this.Oncalled = true;
             _this.waiting().then(function (res) {
                 _this.audio.pause();
                 if (res === 1) {
-                    var videor_1 = _this.myVideo.nativeElement;
+                    var videor = _this.myVideo.nativeElement;
                     openStream().then(function (stream) {
+                        // var track = stream.getTracks();  // if only one media track
+                        // for( var i=0;i<track.length;i++)
+                        // track[i].stop();
+                        var videor = _this.myVideo.nativeElement;
+                        _this.streams.push(stream);
                         _this.Oncalled = false;
                         call.answer(stream);
-                        videor_1.src = URL.createObjectURL(stream);
+                        videor.src = URL.createObjectURL(stream);
                         _this.startCall = false;
                         _this.startTimeCall = true;
-                        videor_1.play();
+                        videor.play();
                         call.on("stream", function (remoteStream) {
+                            _this.streams.push(remoteStream);
                             var video = _this.reVideo.nativeElement;
                             video.src = URL.createObjectURL(remoteStream);
                             video.play();
@@ -115,6 +125,11 @@ var AppComponent = /** @class */ (function () {
                     });
                 }
             });
+        });
+        this.socket.on('userList', function (data) {
+            console.log(data);
+            console.log(data);
+            _this.userL = data;
         });
     };
     AppComponent.prototype.getPeerID = function () {
@@ -161,6 +176,14 @@ var AppComponent = /** @class */ (function () {
         });
     };
     AppComponent.prototype.disconnect = function () {
+        for (var _i = 0, _a = this.streams; _i < _a.length; _i++) {
+            var st = _a[_i];
+            var tr = st.getTracks();
+            for (var _b = 0, tr_1 = tr; _b < tr_1.length; _b++) {
+                var t = tr_1[_b];
+                t.stop();
+            }
+        }
         this.startTimeCall = false;
         this.stRecord = false;
         this.Oncalled = false;
@@ -180,12 +203,15 @@ var AppComponent = /** @class */ (function () {
         // });
         var video = this.reVideo.nativeElement;
         openStream().then(function (stream) {
-            console.log(JSON.stringify(stream));
+            console.log(stream);
+            _this.streams.push(stream);
             video.src = URL.createObjectURL(stream);
             video.play();
             _this.Oncalled = true;
+            // this.peer.send(this.user);
             var call = _this.peer.call(_this.anotherid, stream);
             call.on("stream", function (remoteStream) {
+                _this.streams.push(remoteStream);
                 _this.startTimeCall = true;
                 var videor = _this.myVideo.nativeElement;
                 console.log(JSON.stringify(remoteStream));
@@ -228,12 +254,39 @@ var AppComponent = /** @class */ (function () {
     return AppComponent;
 }());
 
+function stopStreamedVideo() {
+    navigator.getUserMedia({ audio: true, video: true }, function (stream) {
+        // can also use getAudioTracks() or getVideoTracks()
+        var track = stream.getTracks()[0]; // if only one media track
+        console.log(track);
+        // ...
+        track.stop();
+    }, function (error) {
+        console.log('getUserMedia() error', error);
+    });
+}
 function openStream() {
     var config = {
         audio: true,
         video: true
     };
     return navigator.mediaDevices.getUserMedia(config);
+}
+function closeStream() {
+    openStream().then(function (stream) {
+        if (stream) {
+            stream.getTracks().forEach(function (track) { track.stop(); });
+        }
+    });
+    //   openStream().then(stream=>{
+    //   function stopStream (stream) {
+    //     console.log(stream)
+    //     for (let track of stream.getTracks()) { 
+    //         track.stop()
+    //     }
+    // }
+    // stopStream(stream)
+    // })
 }
 
 
