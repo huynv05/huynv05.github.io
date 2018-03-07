@@ -81,7 +81,7 @@ var AppComponent = /** @class */ (function () {
         var _this = this;
         setTimeout(function () {
             _this.mypeerid = _this.peer.id;
-        }, 2000);
+        }, 2500);
         this.peer.on('connection', function (conn) {
             alert(conn);
             conn.on('data', function (data) {
@@ -117,33 +117,48 @@ var AppComponent = /** @class */ (function () {
             });
         });
     };
+    AppComponent.prototype.getPeerID = function () {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (_this.mypeerid) {
+                resolve(1);
+            }
+            else {
+                setTimeout(function () {
+                    resolve(_this.getPeerID());
+                }, 1000);
+            }
+        });
+    };
     AppComponent.prototype.startRecord = function () {
         this.stRecord = true;
     };
     AppComponent.prototype.login = function () {
         var _this = this;
-        setTimeout(function () {
-            console.log(_this.username + "   " + _this.password);
-            _this.chatservice.login({ username: _this.username, password: _this.password, peerID: _this.mypeerid }).then(function (res) {
-                if (res.err === 0)
-                    _this.user = res.data.data;
-                console.log("this.user" + _this.userL);
-                console.log("this.mypeerid" + _this.user.peerID);
-                _this.isLogined = true;
-                _this.socket.on('userList', function (data) {
-                    console.log(data);
-                    console.log(data);
-                    _this.userL = data;
-                    if (_this.userL.length > 0) {
-                        for (var i = 0; i < _this.userL.length; i++)
-                            if (_this.user.username === _this.userL[i].username)
-                                _this.userL.splice(i, 1);
-                        _this.currUser = data[0];
-                        console.log(_this.currUser);
-                    }
+        this.getPeerID().then(function (resu) {
+            if (resu === 1) {
+                console.log(_this.username + "   " + _this.password);
+                _this.chatservice.login({ username: _this.username, password: _this.password, peerID: _this.mypeerid }).then(function (res) {
+                    if (res.err === 0)
+                        _this.user = res.data.data;
+                    console.log("this.user" + _this.userL);
+                    console.log("this.mypeerid" + _this.user.peerID);
+                    _this.isLogined = true;
+                    _this.socket.on('userList', function (data) {
+                        console.log(data);
+                        console.log(data);
+                        _this.userL = data;
+                        if (_this.userL.length > 0) {
+                            for (var i = 0; i < _this.userL.length; i++)
+                                if (_this.user.username === _this.userL[i].username)
+                                    _this.userL.splice(i, 1);
+                            _this.currUser = data[0];
+                            console.log(_this.currUser);
+                        }
+                    });
                 });
-            });
-        }, 2000);
+            }
+        });
     };
     AppComponent.prototype.disconnect = function () {
         this.startTimeCall = false;
